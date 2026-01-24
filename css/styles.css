@@ -177,6 +177,27 @@ a:focus {
   padding: clamp(3rem, 6vw, 5rem) 0;
 }
 
+.section>.container>.eyebrow,
+.section>.container>h1,
+.section>.container>h2,
+.section>.container>p.lead,
+.section>.container>p:not(.lead) {
+  text-align: center;
+}
+
+.section>.container>h1,
+.section>.container>h2 {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section>.container>p {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .section-alt {
   background: var(--bg-alt);
 }
@@ -253,6 +274,17 @@ p {
   padding: 1.5rem;
   height: 100%;
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+  text-align: center;
+}
+
+/* Center all buttons within cards */
+.feature-card .btn,
+.service-card .btn,
+.blog-card .btn,
+.pricing-card .btn {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .team-card {
@@ -306,7 +338,9 @@ p {
   padding: 0.35rem 0.7rem;
   border-radius: 999px;
   background: var(--surface-alt);
-  color: var(--text-muted);
+  color: var(--text);
+  font-weight: 500;
+  border: 1px solid var(--border);
 }
 
 .site-footer {
@@ -349,11 +383,21 @@ p {
   transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 
+.footer-social a svg {
+  fill: var(--text-muted);
+  transition: fill 0.2s ease;
+}
+
 .footer-social a:hover,
 .footer-social a:focus {
   color: var(--primary);
   border-color: var(--primary);
   transform: translateY(-2px);
+}
+
+.footer-social a:hover svg,
+.footer-social a:focus svg {
+  fill: var(--primary);
 }
 
 .dashboard-shell {
@@ -470,8 +514,7 @@ p {
 .coming-soon {
   min-height: 100vh;
   background: linear-gradient(135deg, rgba(37, 99, 235, 0.85), rgba(15, 118, 110, 0.85)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80")
-      center/cover no-repeat;
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat;
   color: #ffffff;
   display: grid;
   place-items: center;
@@ -514,5 +557,14 @@ p {
 
   .site-header .btn {
     width: 100%;
+  }
+
+  /* Center buttons in service cards on mobile */
+  .service-card .btn,
+  .feature-card .btn,
+  .blog-card .btn,
+  .pricing-card .btn {
+    display: inline-block;
+    margin: 0 auto;
   }
 }
