@@ -36,7 +36,37 @@ themeToggleButtons.forEach((button) => {
   });
 });
 
+const rtlToggleButtons = document.querySelectorAll("[data-rtl-toggle]");
+const rtlStorageKey = "avs-rtl";
+
+const applyRtl = (isRtl) => {
+  document.documentElement.setAttribute("dir", isRtl ? "rtl" : "ltr");
+  rtlToggleButtons.forEach((button) => {
+    button.setAttribute("aria-pressed", isRtl.toString());
+    button.innerHTML = isRtl ? "LTR Mode" : "RTL Mode";
+  });
+};
+
+const initRtl = () => {
+  const storedRtl = localStorage.getItem(rtlStorageKey);
+  if (storedRtl !== null) {
+    applyRtl(storedRtl === "true");
+    return;
+  }
+  applyRtl(false);
+};
+
+rtlToggleButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const isRtl = document.documentElement.getAttribute("dir") === "rtl";
+    const next = !isRtl;
+    localStorage.setItem(rtlStorageKey, next.toString());
+    applyRtl(next);
+  });
+});
+
 initTheme();
+initRtl();
 
 const setActiveNav = () => {
   const currentPath = window.location.pathname.split("/").pop() || "index.html";
