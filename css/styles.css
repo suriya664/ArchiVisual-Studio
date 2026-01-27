@@ -126,6 +126,17 @@ a:focus {
   color: var(--text);
 }
 
+/* Dark mode navigation fixes */
+[data-theme="dark"] .nav-link {
+  color: var(--text-muted);
+}
+
+[data-theme="dark"] .nav-link.active,
+[data-theme="dark"] .nav-link:hover,
+[data-theme="dark"] .nav-link:focus {
+  color: var(--text);
+}
+
 .theme-toggle {
   border: 1px solid var(--border);
   background: var(--surface);
@@ -343,6 +354,13 @@ p {
   border: 1px solid var(--border);
 }
 
+/* Ensure OK tags are visible in light mode */
+[data-theme="light"] .tag {
+  background: var(--surface-alt);
+  color: var(--text);
+  border-color: var(--border);
+}
+
 .site-footer {
   margin-top: auto;
   padding: 3rem 0 2rem;
@@ -412,8 +430,90 @@ p {
   padding: 2rem 1.5rem;
 }
 
+.dashboard-sidebar .nav-link {
+  color: #1e293b !important;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.dashboard-sidebar .nav-link.active,
+.dashboard-sidebar .nav-link:hover {
+  color: #ffffff !important;
+  background: #2563eb !important;
+}
+
+/* Light mode sidebar navigation */
+[data-theme="light"] .dashboard-sidebar .nav-link {
+  color: #1e293b !important;
+  background: transparent !important;
+}
+
+[data-theme="light"] .dashboard-sidebar .nav-link.active,
+[data-theme="light"] .dashboard-sidebar .nav-link:hover {
+  color: #ffffff !important;
+  background: #2563eb !important;
+}
+
+/* Dark mode sidebar navigation */
+[data-theme="dark"] .dashboard-sidebar .nav-link {
+  color: #f8fafc !important;
+  background: transparent !important;
+}
+
+[data-theme="dark"] .dashboard-sidebar .nav-link.active,
+[data-theme="dark"] .dashboard-sidebar .nav-link:hover {
+  color: #ffffff !important;
+  background: #2563eb !important;
+}
+
 .dashboard-content {
   padding: 2rem;
+  position: relative;
+}
+
+/* Mobile menu button styling */
+#mobileMenuToggle {
+  position: fixed !important;
+  top: 20px !important;
+  left: 20px !important;
+  z-index: 1001;
+  background: #ffffff !important;
+  border: 2px solid #e2e8f0 !important;
+  color: #1e293b !important;
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+#mobileMenuToggle:hover {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+#mobileMenuToggle svg {
+  stroke: #1e293b !important;
+  stroke-width: 2.5 !important;
+}
+
+/* Dark mode styling */
+[data-theme="dark"] #mobileMenuToggle {
+  background: #1e293b !important;
+  border: 2px solid #334155 !important;
+  color: #f8fafc !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+[data-theme="dark"] #mobileMenuToggle:hover {
+  background: #334155 !important;
+  border-color: #475569 !important;
+  color: #f8fafc !important;
+}
+
+[data-theme="dark"] #mobileMenuToggle svg {
+  stroke: #f8fafc !important;
 }
 
 .stat-card {
@@ -421,6 +521,7 @@ p {
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 1.5rem;
+  text-align: center;
 }
 
 .auth-page {
@@ -545,8 +646,54 @@ p {
   }
 
   .dashboard-sidebar {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 280px;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    border-right: 1px solid var(--border);
+  }
+
+  .dashboard-sidebar.show {
+    transform: translateX(0);
+  }
+
+  /* Reduce space between menu items in mobile view */
+  .dashboard-sidebar .d-flex.flex-column {
+    gap: 0.25rem !important;
+  }
+
+  .dashboard-sidebar .nav-link {
+    margin-bottom: 0.125rem !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+    margin-left: 0;
+  }
+
+  /* Add overlay when sidebar is open */
+  .dashboard-shell::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .dashboard-shell.sidebar-open::before {
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -566,5 +713,99 @@ p {
   .pricing-card .btn {
     display: inline-block;
     margin: 0 auto;
+  }
+
+  /* Center hero section content in tab/mobile view */
+  .hero .col-lg-6 {
+    text-align: center;
+  }
+
+  .hero .d-flex {
+    justify-content: center;
+  }
+
+  .hero .d-flex.gap-3 {
+    justify-content: center;
+  }
+
+  .hero-media {
+    text-align: center;
+  }
+
+  /* Center all buttons in mobile/tab view */
+  .btn {
+    display: block;
+    margin: 0.5rem auto;
+    width: auto;
+    padding: 0.5rem 1rem !important;
+    font-size: 0.875rem !important;
+    min-width: auto !important;
+    max-width: 200px !important;
+  }
+
+  /* Center all text content in mobile/tab view */
+  h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  /* Center card content */
+  .service-card,
+  .feature-card,
+  .blog-card,
+  .pricing-card {
+    text-align: center;
+  }
+
+  /* Center eyebrow elements */
+  .eyebrow {
+    text-align: center;
+    display: block;
+  }
+
+  /* Center list items */
+  li {
+    text-align: center;
+  }
+
+  /* Center tags */
+  .tag {
+    margin: 0.25rem auto;
+    display: inline-block;
+  }
+
+  /* Center section headers and content */
+  .section .container > div {
+    text-align: center;
+  }
+
+  /* Center flex containers */
+  .d-flex.justify-content-between {
+    justify-content: center !important;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Fix contact page overflow issues */
+  .row.g-3 {
+    margin: 0;
+  }
+
+  .row.g-3 > * {
+    padding: 0.5rem;
+  }
+
+  /* Ensure form elements don't overflow */
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
