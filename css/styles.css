@@ -690,14 +690,14 @@ p {
     transform: translateX(0);
   }
 
-  /* Reduce space between menu items in mobile view */
+  /* Reduce space between menu items in tablet/mobile view */
   .dashboard-sidebar .d-flex.flex-column {
-    gap: 0.25rem !important;
+    gap: 0.125rem !important;
   }
 
   .dashboard-sidebar .nav-link {
-    margin-bottom: 0.125rem !important;
-    padding: 0.5rem 0.75rem !important;
+    margin-bottom: 0.0625rem !important;
+    padding: 0.425rem 0.75rem !important;
   }
 
   .dashboard-content {
