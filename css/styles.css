@@ -695,14 +695,7 @@ p {
   margin-bottom: 0.5rem;
 }
 
-.auth-card .logo-img {
-  width: 64px;
-  height: 64px;
-}
 
-.auth-card .brand-text {
-  font-size: 1.75rem;
-}
 
 @media (max-width: 991px) {
   .navbar-collapse {
