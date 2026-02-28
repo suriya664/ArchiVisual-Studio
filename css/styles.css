@@ -131,6 +131,8 @@ a:focus {
   vertical-align: middle;
   font-weight: 700;
   letter-spacing: 0.3px;
+  font-size: clamp(1rem, 2.5vw, 1.5625rem);
+  /* Consistent 16px to 25px scale */
 }
 
 .navbar-brand:hover .logo-img {
@@ -885,6 +887,14 @@ p {
   }
 
   /* Center flex containers */
+  /* Prevent stacking of auth links on mobile if they fit */
+  .auth-card .d-flex.justify-content-between {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0.5rem;
+  }
+
   .d-flex.justify-content-between {
     justify-content: center !important;
     flex-direction: column;
@@ -909,5 +919,40 @@ p {
     max-width: 100%;
     padding-left: 1rem;
     padding-right: 1rem;
+  }
+
+  /* Footer alignment fixes for 768px */
+  @media (min-width: 768px) and (max-width: 991px) {
+    .site-footer .row>div {
+      text-align: left !important;
+    }
+
+    .site-footer .footer-social {
+      justify-content: flex-start !important;
+    }
+
+    .site-footer .footer-title,
+    .site-footer p,
+    .site-footer a {
+      text-align: left !important;
+    }
+
+    .site-footer .tag {
+      margin-left: 0 !important;
+      margin-right: 0.5rem !important;
+    }
+  }
+}
+
+/* Navbar alignment for 1024px */
+@media (min-width: 992px) and (max-width: 1024px) {
+  .navbar-nav {
+    gap: 0.5rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.9rem;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
   }
 }

@@ -43,7 +43,9 @@ const applyRtl = (isRtl) => {
   document.documentElement.setAttribute("dir", isRtl ? "rtl" : "ltr");
   rtlToggleButtons.forEach((button) => {
     button.setAttribute("aria-pressed", isRtl.toString());
-    button.innerHTML = isRtl ? "LTR Mode" : "RTL Mode";
+    button.setAttribute("aria-label", "Toggle RTL/LTR direction");
+    button.setAttribute("title", isRtl ? "Switch to LTR" : "Switch to RTL");
+    button.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8h14M5 12h14M5 16h14"/></svg>`;
   });
 };
 
